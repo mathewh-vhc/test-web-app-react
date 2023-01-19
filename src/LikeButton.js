@@ -1,16 +1,20 @@
 
 console.log("jsx!")
 function LikeButton(props) {
-  console.log("Liked from object props:",props.liked)
   const [liked, setLiked] = React.useState(false);
 
+  /**
+   * In a full react application, we may do this part slightly differently as we'd only have state in
+   * the uppermost parent object and modify state by passing it around as props.
+   */
   if (props.liked && liked) {
     return 'You liked this!';
   }
 
   return (
     <button onClick={() => {
-        setLiked(true)
+        setLiked(!liked)
+        console.log("State after click:",liked)
       }}>
       Like
     </button>
@@ -27,7 +31,6 @@ function RenderObject() {
 
 
 function UpdateObject(liked = false) {
-  console.log("Rendering", liked)
   root.render(<LikeButton liked={liked}/>);
 }
 

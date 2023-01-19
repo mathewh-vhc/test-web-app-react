@@ -20,7 +20,6 @@ function resolveAfter2Seconds() {
 var UpdateObject = undefined;
 var RenderObject = undefined;
 async function asyncCall() {
-    console.log('calling');
     const result = await resolveAfter2Seconds();
     RenderObject = window.RenderObject
     UpdateObject = window.UpdateObject;
@@ -31,16 +30,15 @@ asyncCall();
 
 
 Input.addEventListener('change', (eve)=>{
-    //Need to add a render check
+    //Need to add a render check - check if the element exists in the dom, or add a flag
     if (UpdateObject) {
         UpdateObject(Input.checked)
     }
 })
 
 Button.addEventListener('click', (eve)=>{
-    //Need to add a render check
-    console.log("rendering")
     if (RenderObject) {
         RenderObject()
     }
+    Button.style.display = "none"
 })

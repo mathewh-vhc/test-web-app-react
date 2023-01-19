@@ -4,12 +4,16 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 console.log("jsx!");
 function LikeButton(props) {
-  console.log("Liked from object props:", props.liked);
-
   var _React$useState = React.useState(false),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       liked = _React$useState2[0],
       setLiked = _React$useState2[1];
+
+  /**
+   * In a full react application, we may do this part slightly differently as we'd only have state in
+   * the uppermost parent object and modify state by passing it around as props.
+   */
+
 
   if (props.liked && liked) {
     return 'You liked this!';
@@ -18,10 +22,11 @@ function LikeButton(props) {
   return React.createElement(
     "button",
     { onClick: function onClick() {
-        setLiked(true);
+        setLiked(!liked);
+        console.log("State after click:", liked);
       }, __source: {
         fileName: _jsxFileName,
-        lineNumber: 12
+        lineNumber: 15
       },
       __self: this
     },
@@ -39,10 +44,9 @@ function RenderObject() {
 function UpdateObject() {
   var liked = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
-  console.log("Rendering", liked);
   root.render(React.createElement(LikeButton, { liked: liked, __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 34
     },
     __self: this
   }));
